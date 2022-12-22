@@ -94,3 +94,11 @@ def histogram_rendering(df: pd.DataFrame, class_mark: int) -> None:
     plt.xlabel("Intensity")
     plt.ylabel("Number of pixels")
     plt.show()
+
+
+if __name__ == '__main__':
+    df = create_DataFrame()
+    add_mark(df)
+    add_hwcColumns(df)
+    group_df(df, 1)
+    histogram_rendering(df, 1)
