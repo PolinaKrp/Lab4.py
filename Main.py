@@ -82,3 +82,15 @@ def create_histogram(df: pd.DataFrame, class_mark: int) -> list:
         hist = cv2.calcHist([img], [number], None, [256], [0, 256])
         array.append(hist)
     return array
+
+
+def histogram_rendering(df: pd.DataFrame, class_mark: int) -> None:
+    """this function draws histogram"""
+    hist = create_histogram(df, class_mark)
+    plt.plot(hist[0], color='b')
+    plt.plot(hist[1], color='g')
+    plt.plot(hist[2], color='r')
+    plt.title('Image Histogram For Blue, Green, Red Channels')
+    plt.xlabel("Intensity")
+    plt.ylabel("Number of pixels")
+    plt.show()
