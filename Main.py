@@ -56,3 +56,15 @@ def mark_filter(df: pd.DataFrame, class_mark: int) -> pd.DataFrame:
 def whm_filter(df: pd.DataFrame, class_mark: int, max_width: int, max_height: int) -> pd.DataFrame:
     """this function takes all images by a given mark, maximum width and height, and returns a filtered dataframe"""
     return df[(df.mark == class_mark) & (df.height <= max_height) & (df.width <= max_width)]
+
+
+def group_df(df: pd.DataFrame, class_mark: int) -> None:
+    """This function groups data frame by new column (number of pixels) and outputs information about that"""
+    df = mark_filter(df, class_mark)
+    img_pixels = []
+    for item in df['absolute_path']:
+        img = cv2.imread(item)
+        img_pixels.append(img.size)
+    df['pixels'] = img_pixels
+    df.groupby('pixels').count()
+    print(df.pixels.describe())
