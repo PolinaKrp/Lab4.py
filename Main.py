@@ -31,3 +31,18 @@ def add_mark(df: pd.DataFrame) -> None:
         else:
             value.append(1)
     df['mark'] = value
+
+
+def add_hwcColumns(df: pd.DataFrame) -> None:
+    """This function adds to dataframe 3 columns: height, width and channels of the image"""
+    img_width = []
+    img_height = []
+    img_channel = []
+    for item in df['absolute_path']:
+        img = cv2.imread(item)
+        img_height.append(img.shape[0])
+        img_width.append(img.shape[1])
+        img_channel.append(img.shape[2])
+    df['height'] = img_height
+    df['width'] = img_width
+    df['channel'] = img_channel
