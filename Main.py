@@ -46,3 +46,13 @@ def add_hwcColumns(df: pd.DataFrame) -> None:
     df['height'] = img_height
     df['width'] = img_width
     df['channel'] = img_channel
+
+
+def mark_filter(df: pd.DataFrame, class_mark: int) -> pd.DataFrame:
+    """This function selects all images with mark and returns a DataFrame filtered by mark"""
+    return df[df['mark'] == class_mark]
+
+
+def whm_filter(df: pd.DataFrame, class_mark: int, max_width: int, max_height: int) -> pd.DataFrame:
+    """this function takes all images by a given mark, maximum width and height, and returns a filtered dataframe"""
+    return df[(df.mark == class_mark) & (df.height <= max_height) & (df.width <= max_width)]
